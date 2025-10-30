@@ -6,7 +6,7 @@
 <div class="row align-items-center g-5">
     <div class="col-md-6">
         <div class="p-4 bg-dark bg-opacity-50 rounded shadow">
-            <h2 class="text-warning fw-bold mb-4">Selamat Datang di RSHP UNAIR</h2>
+            <h2 class="text-warning fw-bold mb-4">Tentang RSHP UNAIR</h2>
             <br>
             <p style="text-align: justify;">
                 Rumah Sakit Hewan dibentuk di Fakultas Kedokteran Hewan Universitas Airlangga secara resmi berdiri pada tanggal 1 Januari 1972 berdasarkan SK Menteri Pendidikan dan Kebudayaan Republik Indonesia. 

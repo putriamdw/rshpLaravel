@@ -34,8 +34,31 @@
 
     footer { background: #003c8f; color: #ffc107; text-align: center; padding: 15px; font-size: 14px; margin-top: 40px; box-shadow: 0 -2px 10px rgba(0,0,0,0.3); }
 
-    @media (max-width: 768px) { header { flex-direction: column; text-align: center; } header .titles { margin-top: 10px; } nav ul { flex-direction: column; gap: 10px; } }
+   {{-- CSS untuk tabel --}}
+<style>
+    .rshp-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+    .rshp-table th, .rshp-table td {
+        border: 1px solid #fff;
+        padding: 8px;
+        text-align: left;
+    }
+    .rshp-table th {
+        background-color: #ffc107;
+        color: #000;
+    }
+    .rshp-table tr:nth-child(even) {
+        background-color: rgba(255,255,255,0.1);
+    }
+    .data-section {
+        overflow-x: auto; /* supaya scroll horizontal muncul kalau tabel lebar */
+    }
 </style>
+
 </head>
 
 <body>
