@@ -1,34 +1,43 @@
-@extends('site.layout')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - RSHP UNAIR</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+</head>
 
-@section('title', 'Login')
+<body>
+<div class="login-container">
+    <h2>Login</h2>
 
-@section('content')
-<h2>Login</h2>
+    <!-- Tampilkan pesan error jika ada -->
+    @if(session('error'))
+        <div class="error-message">
+            {{ session('error') }}
+        </div>
+    @endif
 
-<form action="#" method="POST" style="max-width: 400px; margin: 30px auto; background: #f9f9f9; padding: 25px; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1);">
-    @csrf
-    <div style="margin-bottom: 15px;">
-        <label for="email" style="display: block; font-weight: bold; color: #1119a3;">Email:</label>
-        <input type="email" id="email" name="email" required
-            style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-    </div>
+    <form action="{{ route('login.authenticate') }}" method="POST">
+        @csrf
 
-    <div style="margin-bottom: 20px;">
-        <label for="password" style="display: block; font-weight: bold; color: #1119a3;">Password:</label>
-        <input type="password" id="password" name="password" required
-            style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-    </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ old('email') }}" required>
+        </div>
 
-    <button type="submit" 
-        style="width: 100%; background: #1119a3; color: white; font-weight: bold; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">
-        Masuk
-    </button>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
 
-    <div style="text-align: center; margin-top: 15px;">
-        <a href="{{ url('/') }}" 
-            style="display: inline-block; background: #ffc107; color: #001f54; font-weight: bold; padding: 10px 20px; border-radius: 5px; text-decoration: none; margin-top: 10px;">
-            Kembali ke Landing Page
-        </a>
-    </div>
-</form>
-@endsection
+        <button type="submit" class="btn-login">Masuk</button>
+
+        <div class="back-link">
+            <a href="{{ url('/') }}">Kembali ke Landing Page</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

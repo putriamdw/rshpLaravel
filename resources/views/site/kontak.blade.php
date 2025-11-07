@@ -1,11 +1,11 @@
-@extends('site.layout')
+@extends('layouts')
 
 @section('title', 'Kontak')
 
 @section('content')
 <h2 class="mb-4 text-warning">Kontak Kami</h2>
 <br>
-<table style="width: 100%; border-collapse: separate; border-spacing: 0 20px;">
+<table style="width: 100%; border-collapse: separate; border-spacing: 0 40px;">
     <tr>
         <!-- Telepon -->
         <td align="center" style="width: 33%;">
@@ -28,26 +28,4 @@
         <td style="width: 3%"></td>
     </tr>
 </table>
-
-<style>
-    table td p {
-        margin-top: 10px;
-        font-size: 16px;
-        font-weight: 600;
-    }
-
-    p {
-        color: #c1c1c1ff;
-    }
-
-    @media (max-width: 768px) {
-        table, tr, td {
-            display: block;
-            width: 100%;
-        }
-        td {
-            margin-bottom: 20px;
-        }
-    }
-</style>
 @endsection

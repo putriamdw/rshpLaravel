@@ -1,10 +1,9 @@
-@extends('site.layout')
+@extends('layouts')
 
 @section('title', 'Layanan')
 
 @section('content')
 <h2>Layanan Umum</h2>
-
 <table style="width: 100%; border-collapse: separate; border-spacing: 0 20px;">
     <tr>
         <td class="highlight" align="center" style="width: 30%;">
@@ -23,9 +22,7 @@
         </td>
     </tr>
 </table>
-
 <br>
-
 <table style="width: 100%; border-collapse: separate; border-spacing: 0 20px;">
     <tr>
         <td class="highlight" align="center" style="width: 30%;">
@@ -44,23 +41,4 @@
         </td>
     </tr>
 </table>
-<style>
-    .highlight {
-        background-color: #ffffff1f; /* putih */
-        color: #001f54; /* teks gelap */
-        padding: 30px 20px;
-        border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    table td p {
-        margin-top: 10px;
-        font-size: 16px;
-        font-weight: 600;
-    }
-
-    p {
-        color: #c1c1c1ff;
-    }
-</style>
 @endsection

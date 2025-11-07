@@ -1,4 +1,4 @@
-@extends('site.layout')
+@extends('layouts')
 
 @section('title', 'Home')
 
@@ -26,10 +26,4 @@
         <blockquote class="blockquote text-light fs-5">“Excellence With Morality”</blockquote>
     </div>
 </div>
-
-<style>
-    .home-img { transition: transform 0.3s ease; }
-    .home-img:hover { transform: scale(1.05); }
-    blockquote { border-left: 4px solid #ffc107; padding-left: 15px; }
-</style>
 @endsection

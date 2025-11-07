@@ -1,3 +1,4 @@
+
 <table border='1' cellpadding='8' cellspacing='0'>
     <thead>
         <tr>
@@ -11,5 +12,6 @@
             <td>{{ $index + 1 }}</td>
             <td>{{ $hewan->nama_jenis_hewan }}</td>
         </tr>
+        @endforeach
     </tbody>
 </table>

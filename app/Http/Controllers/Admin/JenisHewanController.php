@@ -13,6 +13,6 @@ class JenisHewanController extends Controller
     {
         //$jenisHewan = JenisHewan::select('idjenis_hewan', 'nama_jenis_hewan')->get();
         $jenisHewan = JenisHewan::all();
-        return view('admin.jenis-hewan.index', compact('jenisHewan'));
+        return view('admin.jenis_hewan.index', compact('jenisHewan'));
     }
 }
