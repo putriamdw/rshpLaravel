@@ -15,7 +15,7 @@
         <h1>Selamat Datang di RSHP UNAIR</h1>
         <p>Rumah Sakit Hewan Pendidikan<br>Universitas Airlangga</p>
         <p><em>“Excellence With Morality”</em></p>
-        <a href="{{ route('home') }}" class="btn btn-enter">Masuk ke Website</a>
+        <a href="{{ route('site.home') }}" class="btn btn-enter">Masuk ke Website</a>
     </div>
     <footer>
         © {{ date('Y') }} RSHP Universitas Airlangga. All rights reserved.

@@ -10,12 +10,12 @@ class Pemilik extends Model
     protected $primaryKey = 'idpemilik';
     protected $fillable = ['no_wa', 'alamat'];
 
-    public function user()
+    public function User()
     {
         return $this->belongsTo(User::class, 'iduser', 'iduser');
     }
 
-    public function pets()
+    public function Pet()
     {
         return $this->hasMany(Pet::class, 'idpemilik', 'idpemilik');
     }

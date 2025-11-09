@@ -11,17 +11,14 @@ class RasHewan extends Model
 
     protected $table = 'ras_hewan';
     protected $primaryKey = 'idras_hewan';
-    public $timestamps = false;
+    protected $fillable = ['nama_ras'];
 
-    protected $fillable = ['nama_ras', 'idjenis_hewan'];
-
-    // Relasi ke JenisHewan
-    public function jenis()
+    public function JenisHewan()
     {
         return $this->belongsTo(JenisHewan::class, 'idjenis_hewan', 'idjenis_hewan');
     }
 
-    public function pets()
+    public function Pet()
     {
         return $this->hasMany(Pet::class, 'idras_hewan', 'idras_hewan');
     }

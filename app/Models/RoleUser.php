@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class RoleUser extends Model
 {
-    protected $table = 'role';
-        protected $primaryKey = 'idrole';
-    protected $fillable = ['nama'];
+    protected $table = 'role_user';
+    protected $primaryKey = 'idrole_user';
+    protected $fillable = ['status'];
 
-    public function role()
+    public function Role()
     {
         return $this->belongsTo(Role::class, 'idrole', 'idrole');
     }
 
-    public function user()
+    public function User()
     {
         return $this->belongsTo(User::class, 'iduser', 'iduser');
     }

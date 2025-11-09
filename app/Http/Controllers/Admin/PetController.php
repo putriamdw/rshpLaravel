@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Pemilik;
+use App\Models\Pet;
 
-class PemilikController extends Controller
+class PetController extends Controller
 {
     public function index()
     {
-        $pemilik = Pemilik::with('user')->get();
+        $pet = Pet::with('pemilik')->get();
+        return view('admin.pet.index', compact('pet'));
+        $pemilik = Pet::with('user')->get();
         return view('admin.pemilik.index', compact('pemilik'));
     }
 }

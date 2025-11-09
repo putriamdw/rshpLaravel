@@ -6,13 +6,12 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        if (!$request->session()->has('user')) {
-            return redirect('/login')->with('error', 'Silahkan login terlebih dahulu.');
-        }
+        // Ambil data user yang sedang login (jika pakai Auth)
+        $user = auth()->user();
 
-        $user = $request->session()->get('user');
-        return view('layouts.dashboard', compact('user'));
+        // Kirim ke view dashboard.blade.php
+        return view('dashboard', compact('user'));
     }
 }

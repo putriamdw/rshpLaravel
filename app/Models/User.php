@@ -2,28 +2,42 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Model
+class User extends Authenticatable
 {
+    use HasFactory, Notifiable;
+
     protected $table = 'user';
     protected $primaryKey = 'iduser';
-    public $timestamps = false; // matikan created_at & updated_at
+    public $timestamps = false;
 
-    protected $fillable = [
-        'nama',
-        'email',
-        'password',
-        'nama_role', // pastikan ada kolom role
-    ];
+    protected $fillable = ['nama', 'email', 'password'];
 
-    // Relasi jika ada tabel pemilik
-    public function pemilik()
+    protected $hidden = ['password', 'remember_token'];
+
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+
+    public function Pemilik()
     {
         return $this->hasOne(Pemilik::class, 'iduser', 'iduser');
     }
 
-    public function roleUser()
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'idrole', 'idrole');
+    }
+
+    public function RoleUser()
     {
         return $this->hasMany(RoleUser::class, 'iduser', 'iduser');
     }

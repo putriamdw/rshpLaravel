@@ -5,7 +5,7 @@
 @section('content')
 <h2 class="mb-4 text-warning">Kontak Kami</h2>
 <br>
-<table style="width: 100%; border-collapse: separate; border-spacing: 0 40px;">
+<table style="width: 100%; border-collapse: separate; border-spacing: 0 55px;">
     <tr>
         <!-- Telepon -->
         <td align="center" style="width: 33%;">
