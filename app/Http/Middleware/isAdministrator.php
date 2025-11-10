@@ -1,5 +1,5 @@
 <?php
-// ada
+
 namespace App\Http\Middleware;
 
 use Closure;

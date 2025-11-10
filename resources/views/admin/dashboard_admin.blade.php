@@ -28,6 +28,56 @@
                                     <i class="fas fa-users"></i> Pemilik
                                 </a>
                             </div>
+                            <div class="col-md-12 mb-2">
+                                <a href="{{ route('admin.kategori.index') }}" class="btn btn-success btn-block">
+                                    <i class="fas fa-users"></i> Kategori
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <a href="{{ route('admin.kategori_klinis.index') }}" class="btn btn-success btn-block">
+                                    <i class="fas fa-users"></i> Kategori Klinis
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <a href="{{ route('admin.kode_tindakan_terapi.index') }}" class="btn btn-success btn-block">
+                                    <i class="fas fa-users"></i> Kode Tindakan Terapi
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <a href="{{ route('admin.pet.index') }}" class="btn btn-success btn-block">
+                                    <i class="fas fa-users"></i> Pet
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <a href="{{ route('admin.ras_hewan.index') }}" class="btn btn-success btn-block">
+                                    <i class="fas fa-users"></i> Ras Hewan
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <a href="{{ route('admin.role.index') }}" class="btn btn-success btn-block">
+                                    <i class="fas fa-users"></i> Role
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <a href="{{ route('admin.user.index') }}" class="btn btn-success btn-block">
+                                    <i class="fas fa-users"></i> User
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <a href="{{ route('admin.pasien.index') }}" class="btn btn-success btn-block">
+                                    <i class="fas fa-users"></i> Pasien
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <a href="{{ route('admin.pendaftaran.index') }}" class="btn btn-success btn-block">
+                                    <i class="fas fa-users"></i> Pendaftaran
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <a href="{{ route('admin.rekam_medis.index') }}" class="btn btn-success btn-block">
+                                    <i class="fas fa-users"></i> Rekam Medis
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

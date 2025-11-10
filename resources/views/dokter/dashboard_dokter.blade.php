@@ -23,6 +23,16 @@
                                     <i class="fas fa-users"></i> Pasien
                                 </a>
                             </div>
+                            <div class="col-md-12 mb-2">
+                                <a href="{{ route('admin.rekam_medis.index') }}" class="btn btn-success btn-block">
+                                    <i class="fas fa-users"></i> Rekam Medis
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <a href="{{ route('admin.kode_tindakan_terapi.index') }}" class="btn btn-success btn-block">
+                                    <i class="fas fa-users"></i> Kode Tindakan Terapi
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

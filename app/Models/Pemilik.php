@@ -17,7 +17,17 @@ class Pemilik extends Model
 
     public function Pet()
     {
-        return $this->hasMany(Pet::class, 'idpemilik', 'idpemilik');
+        return $this->belongsTo(Pet::class, 'idpemilik', 'idpemilik');
     }
+
+    public function Pasien()
+    {
+        return $this->belongsTo(User::class, 'idpemilik', 'idpemilik');
+    }
+
+    public function Pendaftaran()
+    {
+        return $this->hasMany(Pet::class, 'idpemilik', 'idpemilik');
+    }   
 
 }

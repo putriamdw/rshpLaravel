@@ -10,7 +10,7 @@ class RasHewanController extends Controller
 {
     public function index()
     {
-        $ras_hewan = RasHewan::with('JenisHewan')->get();
+        $ras_hewan = RasHewan::with('JenisHewan', 'pet')->get();
         return view('admin.ras_hewan.index', compact('ras_hewan'));
     }
 }
