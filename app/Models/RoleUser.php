@@ -8,7 +8,8 @@ class RoleUser extends Model
 {
     protected $table = 'role_user';
     protected $primaryKey = 'idrole_user';
-    protected $fillable = ['status'];
+    protected $fillable = ['iduser', 'idrole', 'status'];
+    public $timestamps = false;
 
     public function Role()
     {

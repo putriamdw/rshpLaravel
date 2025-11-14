@@ -4,10 +4,15 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Site\SiteController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Middleware\isAdministrator;
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Middleware\isResepsionis;
 use App\Http\Controllers\Resepsionis\DashboardResepsionisController;
+use App\Http\Middleware\isDokter;
 use App\Http\Controllers\Dokter\DashboardDokterController;
+use App\Http\Middleware\isPerawat;
 use App\Http\Controllers\Perawat\DashboardPerawatController;
+use App\Http\Middleware\isPemilik;
 use App\Http\Controllers\Pemilik\DashboardPemilikController;
 
 // ROUTE HALAMAN DEPAN (Dapat diakses tanpa login)
@@ -23,6 +28,11 @@ Auth::routes();
 
 // ROUTE YANG HANYA BISA DIAKSES SETELAH LOGIN
 Route::middleware('auth')->group(function () {
+    Route::get('/admin/dashboard', fn() => view('admin.dashboard'))->name('admin.dashboard');
+    Route::get('/dokter/dashboard', fn() => view('dokter.dashboard'))->name('dokter.dashboard');
+    Route::get('/perawat/dashboard', fn() => view('perawat.dashboard'))->name('perawat.dashboard');
+    Route::get('/resepsionis/dashboard', fn() => view('resepsionis.dashboard'))->name('resepsionis.dashboard');
+    Route::get('/pemilik/dashboard', fn() => view('pemilik.dashboard'))->name('pemilik.dashboard');
 
     // DASHBOARD UMUM (menyesuaikan role user)
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -31,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::middleware('isAdministrator')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [DashboardAdminController::class, 'index'])->name('dashboard');
         Route::get('/jenis_hewan', [App\Http\Controllers\Admin\JenisHewanController::class, 'index'])->name('jenis_hewan.index');
+        Route::get('/jenis_hewan/create', [App\Http\Controllers\Admin\JenisHewanController::class, 'create'])->name('jenis_hewan.create');
+        Route::get('/jenis_hewan/store', [App\Http\Controllers\Admin\JenisHewanController::class, 'store'])->name('jenis_hewan.store');
         Route::get('/pemilik', [App\Http\Controllers\Admin\PemilikController::class, 'index'])->name('pemilik.index');
         Route::get('/kategori', [App\Http\Controllers\Admin\KategoriController::class, 'index'])->name('kategori.index');
         Route::get('/kategori_klinis', [App\Http\Controllers\Admin\KategoriKlinisController::class, 'index'])->name('kategori_klinis.index');
@@ -39,34 +51,31 @@ Route::middleware('auth')->group(function () {
         Route::get('/ras_hewan', [App\Http\Controllers\Admin\RasHewanController::class, 'index'])->name('ras_hewan.index');
         Route::get('/role', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('role.index');
         Route::get('/user', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('user.index');
-        Route::get('/pasien', [App\Http\Controllers\Admin\PasienController::class, 'index'])->name('pasien.index');
         Route::get('/pendaftaran', [App\Http\Controllers\Admin\PendaftaranController::class, 'index'])->name('pendaftaran.index');
         Route::get('/rekam_medis', [App\Http\Controllers\Admin\RekamMedisController::class, 'index'])->name('rekam_medis.index');
     });
 
     // ROUTE RESEPSIONIS
-    Route::middleware('isResepsionis')->prefix('resepsionis')->name('resepsionis.')->group(function () {
+    Route::middleware([isResepsionis::class])->prefix('resepsionis')->name('resepsionis.')->group(function () {
         Route::get('/dashboard', [DashboardResepsionisController::class, 'index'])->name('dashboard');
         Route::get('/pendaftaran', [App\Http\Controllers\Admin\PendaftaranController::class, 'index'])->name('pendaftaran.index');
     });
 
     // ROUTE DOKTER
-    Route::middleware('isDokter')->prefix('dokter')->name('dokter.')->group(function () {
+    Route::middleware([isDokter::class])->prefix('dokter')->name('dokter.')->group(function () {
         Route::get('/dashboard', [DashboardDokterController::class, 'index'])->name('dashboard');
-        Route::get('/pasien', [App\Http\Controllers\Admin\PasienController::class, 'index'])->name('pasien.index');
         Route::get('/rekam_medis', [App\Http\Controllers\Admin\RekamMedisController::class, 'index'])->name('rekam_medis.index');
         Route::get('/kode_tindakan_terapi', [App\Http\Controllers\Admin\KodeTindakanTerapiController::class, 'index'])->name('kode_tindakan_terapi.index');
     });
 
     // ROUTE PERAWAT
-    Route::middleware('isPerawat')->prefix('perawat')->name('perawat.')->group(function () {
+    Route::middleware(isPerawat::class)->prefix('perawat')->name('perawat.')->group(function () {
         Route::get('/dashboard', [DashboardPerawatController::class, 'index'])->name('dashboard');
-        Route::get('/pasien', [App\Http\Controllers\Admin\PasienController::class, 'index'])->name('pasien.index');
         Route::get('/kode_tindakan_terapi', [App\Http\Controllers\Admin\KodeTindakanTerapiController::class, 'index'])->name('kode_tindakan_terapi.index');
     });
 
     // ROUTE PEMILIK
-    Route::middleware('isPemilik')->prefix('pemilik')->name('pemilik.')->group(function () {
+    Route::middleware(isPemilik::class)->prefix('pemilik')->name('pemilik.')->group(function () {
         Route::get('/dashboard', [DashboardPemilikController::class, 'index'])->name('dashboard');
         Route::get('/pet', [App\Http\Controllers\Admin\PetController::class, 'index'])->name('pet.index');
     });

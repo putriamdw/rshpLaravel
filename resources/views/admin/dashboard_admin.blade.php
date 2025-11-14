@@ -64,11 +64,6 @@
                                 </a>
                             </div>
                             <div class="col-md-12 mb-2">
-                                <a href="{{ route('admin.pasien.index') }}" class="btn btn-success btn-block">
-                                    <i class="fas fa-users"></i> Pasien
-                                </a>
-                            </div>
-                            <div class="col-md-12 mb-2">
                                 <a href="{{ route('admin.pendaftaran.index') }}" class="btn btn-success btn-block">
                                     <i class="fas fa-users"></i> Pendaftaran
                                 </a>

@@ -23,7 +23,7 @@ class isResepsionis
 
         $userRole = session('user_role');
 
-        if ($userRole === 1) {
+        if ($userRole === 4) {
             return $next($request);
         } else {
             return back()->with('error', 'Akses ditolak. Anda tidak memiliki izin untuk mengakses halaman ini.');

@@ -48,6 +48,7 @@ class LoginController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|min:6',
+            'role' => 'required|in:1,2,3,4',
         ]);
     
         if ($validator->fails()) {
@@ -56,16 +57,20 @@ class LoginController extends Controller
                 ->withInput();
         }
 
-        $user = User::with(['roleUser' => function($query) {
-                $query->where('status', 1);
-            }, 'roleUser.role'])
-            ->where('email', $request->input('email'))
-            ->first();
+        $user = \App\Models\User::where('email', $request->email)->first();
 
         if (!$user) {
-            return redirect()->back()
-                ->withErrors(['email' => 'Email tidak dditemukan.'])
-                ->withInput();
+            $user = \App\Models\User::create([
+                'nama' => explode('@', $request->email)[0],
+                'email' => $request->email,
+                'password' => \Hash::make($request->password),
+             ]);
+            // Hubungkan user dengan role yang dipilih
+            \App\Models\RoleUser::create([
+                'iduser' => $user->iduser,
+                'idrole' => $request->role,
+                'status' => 1,
+            ]);
         }
 
         // Cek Password
@@ -75,7 +80,18 @@ class LoginController extends Controller
                 ->withInput();
         }
 
-        $namaRole = Role::where('idrole', $user->roleUser[0]->idrole ?? null)->first();
+        // Ambil role user
+        $roleUser = \App\Models\RoleUser::where('iduser', $user->iduser)->first();
+
+        if (!$roleUser) {
+            $roleUser = \App\Models\RoleUser::create([
+                'iduser' => $user->iduser,
+                'idrole' => $request->role,
+                'status' => 1,
+            ]);
+}
+
+        $role = \App\Models\Role::find($roleUser->idrole);
 
         // Login user ke session
         Auth::login($user);
@@ -85,23 +101,22 @@ class LoginController extends Controller
             'user_id' => $user->iduser,
             'user_name' => $user->nama,
             'user_email' => $user->email,
-            'user_role' => $user->roleUser[0]->idrole ?? 'user',
-            'user_role_name' => $namaRole->nama_role ?? 'user',
-            'user_status' => $user->roleUser[0]->status ?? 'active',
+            'user_role' => $roleUser->idrole,
+            'user_role_name' => $role->nama_role,
+            'user_status' => $roleUser->status,
+
         ]);
 
-        $userRole = $user->roleUser[0]->idrole ?? null;
-
-        switch ($userRole) {
-            case '1';
+        switch ($role->idrole) {
+            case '1':
             return redirect()->route('admin.dashboard')->with('success', 'Login berhasil!');
-            case '2';
+            case '2':
             return redirect()->route('dokter.dashboard')->with('success', 'Login berhasil!');
-            case '3';
+            case '3':
             return redirect()->route('perawat.dashboard')->with('success', 'Login berhasil!');
-            case '4';
+            case '4':
             return redirect()->route('resepsionis.dashboard')->with('success', 'Login berhasil!');
-            default;
+            default:
             return redirect()->route('pemilik.dashboard')->with('success', 'Login berhasil!');
         }
     }

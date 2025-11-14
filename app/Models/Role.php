@@ -13,9 +13,4 @@ class Role extends Model
     protected $primaryKey = 'idrole';
     protected $fillable = ['nama_role'];
     public $timestamps = false;
-
-    public function roleUser()
-    {
-        return $this->belongsTo(RoleUser::class, 'idrole', 'idrole');
-    }
 }
